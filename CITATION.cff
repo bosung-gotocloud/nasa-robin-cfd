@@ -10,9 +10,7 @@ authors:
 
 repository-code: https://github.com/bosung-gotocloud/nasa-robin-cfd
 
-doi: 10.5281/zenodo.18955148
-version: v1.0
-date-released: 2026-03-11
+doi: 10.5281/zenodo.18955571
 
 abstract: >
   Reproducible CFD dataset for the NASA ROBIN rotor–fuselage configuration

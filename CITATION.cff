@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: NASA ROBIN Rotor CFD Case (HiSA / OpenFOAM)
+message: If you use this dataset, please cite it using the metadata below.
+type: dataset
+
+authors:
+  - family-names: Lee
+    given-names: Bosung
+    affiliation: GotoCloud
+
+repository-code: https://github.com/bosung-gotocloud/nasa-robin-cfd
+
+doi: 10.5281/zenodo.18955148
+version: v1.0
+date-released: 2026-03-11
+
+abstract: >
+  Reproducible CFD dataset for the NASA ROBIN rotor–fuselage configuration
+  using OpenFOAM and the HiSA solver. The repository contains geometry,
+  mesh, a complete OpenFOAM/HiSA simulation case, and post-processing
+  data for validation against NASA experimental measurements.
+
+keywords:
+  - CFD
+  - OpenFOAM
+  - HiSA
+  - rotorcraft
+  - helicopter
+  - NASA ROBIN
+  - rotor-fuselage interaction
+
+license: MIT

@@ -1,0 +1,50 @@
+FoamFile
+{
+ version 2.0;
+ format ascii;
+ class volVectorField;
+ location 0;
+ object U;
+}
+
+#include        "include/freestreamConditions"
+
+dimensions      [0 1 -1 0 0 0 0]; 
+
+internalField   uniform $U; 
+
+boundaryField
+{
+  far_surface
+  {
+        type            characteristicFarfieldVelocity;
+        #include        "include/freestreamConditions"
+        value           $internalField;
+  }
+  robin_surface
+  {
+        type            boundaryCorrectedFixedValue;
+        value           uniform (0 0 0);
+  }
+  blade000_surface
+  {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+  }
+  blade090_surface
+  {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+  }
+  blade180_surface
+  {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+  }
+  blade270_surface
+  {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+  }
+  #include        "include/cyclicAMI"
+}

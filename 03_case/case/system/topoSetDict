@@ -1,0 +1,62 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      topoSetDict;
+}
+
+actions
+(
+    {   
+        name AMI_faceSets1;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            patch "(bladezone000_surface|bladezone000_surface_slave)";
+        }
+    }   
+    {   
+        name AMI_faceSets2;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            patch "(bladezone090_surface|bladezone090_surface_slave)";
+        }
+    }   
+    {   
+        name AMI_faceSets3;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            patch "(bladezone180_surface|bladezone180_surface_slave)";
+        }
+    }   
+    {   
+        name AMI_faceSets4;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            patch "(bladezone270_surface|bladezone270_surface_slave)";
+        }
+    }   
+    {   
+        name AMI_faceSets5;
+        type faceSet;
+        action new;
+        source patchToFace;
+        sourceInfo
+        {
+            patch "(rotorzone_surface|rotorzone_surface_slave)";
+        }
+    }   
+);

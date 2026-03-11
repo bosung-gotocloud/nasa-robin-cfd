@@ -1,0 +1,193 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+|                                                                             |
+|    HiSA: High Speed Aerodynamic solver                                      |
+|    Copyright (C) 2014-2017 Johan Heyns - CSIR, South Africa                 |
+|    Copyright (C) 2014-2017 Oliver Oxtoby - CSIR, South Africa               |
+|                                                                             |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           dictionary;
+    location        "system";
+    object          controlDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application       hisa;
+
+startFrom         startTime;
+
+startTime         0;
+
+stopAt            endTime;
+
+endTime           0.2972; // 10 revolutions, 1 revolution : 0.02972 sec
+
+deltaT            0.0001486;   // 200 steps per revolution
+
+writeControl      runTime;
+
+writeInterval     0.001486;   // every 10 steps per revolution
+
+purgeWrite        0;
+
+writeFormat       ascii;
+
+writePrecision    6;
+
+writeCompression  off;
+
+timeFormat        general;
+
+timePrecision     6;
+
+graphFormat       raw;
+
+runTimeModifiable yes;
+
+//Pstream
+//{
+//    commsType nonBlocking;
+//}
+
+functions
+{
+  rotor_forces
+  {
+    type forces;
+    libs
+      ( "libforces.so");
+    patches
+      (
+        blade180_surface
+        blade000_surface
+        blade270_surface
+        blade090_surface
+      );
+    CofR (0.696 0.051 0.322);
+    updateHeader false;
+    log false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+  }
+  rotor
+  {
+    type forceCoeffs;
+    libs  ( "libforces.so");
+    patches
+      (
+        blade180_surface
+        blade000_surface
+        blade270_surface
+        blade090_surface
+      );
+    coefficients
+      (
+        Cd
+        Cl
+        CmPitch
+      );
+    rho rho;
+    Aref 2.323521927;
+    lRef 1.0;
+    magUInf 27.44;
+    rhoInf 1.225;
+    dragDir (0.998630 0 -0.052336);
+    liftDir (0.052336 0 0.998630);
+    CofR (0.696 0.051 0.322);
+    updateHeader false;
+    log false;
+    pRef 101325;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+  }
+  body_forces
+  {
+    type forces;
+    libs  ( "libforces.so");
+    patches
+      (
+        robin_surface
+      );
+    CofR (0.696 0 0);
+    updateHeader false;
+    log false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+  }
+  body
+  {
+    type forceCoeffs;
+    libs  ( "libforces.so");
+    patches
+      (
+        robin_surface
+      );
+    coefficients
+      (
+        Cd
+        Cl
+        CmPitch
+      );
+    rho rho;
+    Aref 2.323521927;
+    lRef 1.0;
+    magUInf 27.44;
+    rhoInf 1.225;
+    dragDir (0.998630 0 -0.052336);
+    liftDir (0.052336 0 0.998630);
+    CofR (0.696 0 0);
+    updateHeader false;
+    log false;
+    pRef 101325;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+  }
+
+    pointProbes
+    {
+        type            probes;
+        libs            (sampling);
+        writeControl    timeStep;
+        writeInterval   1;
+        fields          (p U rho rhoE);
+
+        // You must manually rotate your (x1, y1, z1) points 
+        // using the same -3.0 and -1.2 degree logic.
+        probeLocations
+        (
+				(0.053349 -0.006571 0.042693)
+				(0.099028 -0.006717 0.073343)
+				(0.206353 -0.003622 0.117789)
+				(0.262313 -0.002507 0.132884)
+				(0.476904 0.001771 0.196746)
+				(0.610583 0.004535 0.206766)
+				(1.008222 0.013092 0.133865)
+				(1.184843 0.016971 0.084558)
+				(1.371863 0.020958 0.061743)
+				(1.558831 0.024948 0.03793)
+				(0.892457 -0.086491 -0.127651)
+				(0.901319 -0.113959 0.069097)
+				(0.90245 -0.102018 0.09512)
+				(0.902839 -0.073066 0.114189)
+				(0.905009 0.010751 0.18934)
+				(0.900927 0.080845 0.139617)
+				(0.899618 0.0809 0.114652)
+				(0.898216 0.107928 0.098762)
+				(0.898757 0.120018 0.075751)
+				(0.888696 0.098189 -0.125257)
+        );
+    }
+}
+// ************************************************************************* //

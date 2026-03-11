@@ -1,0 +1,40 @@
+  rotorzone_surface
+  {
+    type cyclicAMI;
+  }
+  rotorzone_surface_slave
+  {
+    type cyclicAMI;
+  }
+  bladezone000_surface
+  {
+    type cyclicAMI;
+  }
+  bladezone000_surface_slave
+  {
+    type cyclicAMI;
+  }
+  bladezone090_surface
+  {
+    type cyclicAMI;
+  }
+  bladezone090_surface_slave
+  {
+    type cyclicAMI;
+  }
+  bladezone180_surface
+  {
+    type cyclicAMI;
+  }
+  bladezone180_surface_slave
+  {
+    type cyclicAMI;
+  }
+  bladezone270_surface
+  {
+    type cyclicAMI;
+  }
+  bladezone270_surface_slave
+  {
+    type cyclicAMI;
+  }

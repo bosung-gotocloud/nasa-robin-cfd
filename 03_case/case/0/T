@@ -1,0 +1,49 @@
+FoamFile
+{
+ version 2.0;
+ format ascii;
+ class volScalarField;
+ location 0;
+ object T;
+}
+#include        "include/freestreamConditions"
+
+dimensions [0 0 0 1 0 0 0];
+
+internalField uniform     $T ;
+
+boundaryField
+{
+  far_surface
+  {
+        type            characteristicFarfieldTemperature;
+        #include        "include/freestreamConditions"
+        value           $internalField;
+  }
+  robin_surface
+  {
+        type            characteristicWallTemperature;
+        value           $internalField;
+  }
+  blade000_surface
+  {
+        type            characteristicWallTemperature;
+        value           $internalField;
+  }
+  blade090_surface
+  {
+        type            characteristicWallTemperature;
+        value           $internalField;
+  }
+  blade180_surface
+  {
+        type            characteristicWallTemperature;
+        value           $internalField;
+  }
+  blade270_surface
+  {
+        type            characteristicWallTemperature;
+        value           $internalField;
+  }
+  #include				"include/cyclicAMI"
+}

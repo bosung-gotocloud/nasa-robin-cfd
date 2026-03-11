@@ -1,0 +1,50 @@
+FoamFile
+{
+ version 2.0;
+ format ascii;
+ class volScalarField;
+ location 0;
+ object p;
+}
+
+#include        "include/freestreamConditions"
+
+dimensions      [1 -1 -2 0 0 0 0]; 
+
+internalField   uniform $p; 
+
+boundaryField
+{
+  far_surface
+  {
+        type            characteristicFarfieldPressure;
+        #include        "include/freestreamConditions";
+        value           $internalField;
+  }
+  robin_surface
+  {
+        type            characteristicWallPressure;
+        value           $internalField;
+  }
+  blade000_surface
+  {
+        type            characteristicWallPressure;
+        value           $internalField;
+  }
+  blade090_surface
+  {
+        type            characteristicWallPressure;
+        value           $internalField;
+  }
+  blade180_surface
+  {
+        type            characteristicWallPressure;
+        value           $internalField;
+  }
+  blade270_surface
+  {
+        type            characteristicWallPressure;
+        value           $internalField;
+  }
+  #include        "include/cyclicAMI"
+}

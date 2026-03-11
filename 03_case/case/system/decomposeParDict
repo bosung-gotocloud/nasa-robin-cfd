@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+|                                                                             |
+|    HiSA: High Speed Aerodynamic solver                                      |
+|    Copyright (C) 2014-2017 Johan Heyns - CSIR, South Africa                 |
+|    Copyright (C) 2014-2017 Oliver Oxtoby - CSIR, South Africa               |
+|                                                                             |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      decomposeParDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+numberOfSubdomains 64;
+
+method          scotch;
+
+singleProcessorFaceSets 
+( 
+	(AMI_faceSets1 1) 
+	(AMI_faceSets2 2) 
+	(AMI_faceSets3 3) 
+	(AMI_faceSets4 4) 
+	(AMI_faceSets5 5) 
+);
+// ************************************************************************* //

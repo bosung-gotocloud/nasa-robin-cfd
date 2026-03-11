@@ -1,0 +1,53 @@
+FoamFile
+{
+ version 2.0;
+ format ascii;
+ class volScalarField;
+ location 0;
+ object k;
+}
+
+dimensions [0 2 -2 0 0 0 0]; 
+
+internalField uniform 11.294304; // = 3/2*(I*|U|)^2 for I = 0.01 & U = 27.44 
+
+boundaryField
+{
+  far_surface
+  {
+        type            turbulentIntensityKineticEnergyInlet;
+        intensity       0.01; // 1% turbulence intensity
+        value           $internalField;
+  }
+  robin_surface
+  {
+        type            kqRWallFunction;
+//        type            kLowReWallFunction;
+        value           uniform 1e-11;
+  }
+  blade000_surface
+  {
+        type            kqRWallFunction;
+//        type            kLowReWallFunction;
+        value           uniform 1e-11;
+  }
+  blade090_surface
+  {
+        type            kqRWallFunction;
+//        type            kLowReWallFunction;
+        value           uniform 1e-11;
+  }
+  blade180_surface
+  {
+        type            kqRWallFunction;
+//        type            kLowReWallFunction;
+        value           uniform 1e-11;
+  }
+  blade270_surface
+  {
+        type            kqRWallFunction;
+//        type            kLowReWallFunction;
+        value           uniform 1e-11;
+  }
+  #include        "include/cyclicAMI"
+}

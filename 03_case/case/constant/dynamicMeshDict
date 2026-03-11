@@ -1,0 +1,168 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh dynamicMultiMotionSolverFvMesh;
+
+
+// Specification of rotation around centre
+rotation
+{
+    solidBodyMotionFunction  rotatingMotion;
+    rotatingMotionCoeffs
+    {
+      origin (0.696 0.051 0.322);
+      axis (0 0 1); 
+      omega 209.4614;
+    }
+}
+
+dynamicMultiMotionSolverFvMeshCoeffs
+{
+    rotorzone
+    {
+        solver solidBody;
+        cellZone rotorzone;
+        solidBodyCoeffs
+        {
+            $rotation;
+        }
+    }
+
+    bladezone000
+    {
+        cellZone bladezone000;
+        solver solidBody;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction multiMotion;
+            multiMotionCoeffs
+            {
+                rotorzone
+                {
+                    $rotation;
+                }
+
+                bladezone000
+                {
+                    solidBodyMotionFunction cyclicPitchMotion;
+                    cyclicPitchMotionCoeffs
+                    {
+                        origin (0.696 0.051 0.322);
+						axis (0.99955986 0 0.029666244);
+                        omega 209.4614;
+                        amplitude 3.83;
+                        phase 2.28;
+			            alpha0 12;
+                    }
+                }
+            }
+        }
+    }
+
+    bladezone090
+    {
+        cellZone bladezone090;
+        solver solidBody;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction multiMotion;
+            multiMotionCoeffs
+            {
+                rotorzone
+                {
+                    $rotation;
+                }
+
+                bladezone090
+                {
+                    solidBodyMotionFunction cyclicPitchMotion;
+                    cyclicPitchMotionCoeffs
+                    {
+                        origin (0.696 0.051 0.322);
+						axis (0 0.99955986 0.029666244);
+                        omega 209.4614;
+                        amplitude 3.83;
+                        phase 3.850796;
+			            alpha0 12;
+                    }
+                }
+            }
+        }
+    }
+
+    bladezone180
+    {
+        cellZone bladezone180;
+        solver solidBody;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction multiMotion;
+            multiMotionCoeffs
+            {
+                rotorzone
+                {
+                    $rotation;
+                }
+
+                bladezone180
+                {
+                    solidBodyMotionFunction cyclicPitchMotion;
+                    cyclicPitchMotionCoeffs
+                    {
+                        origin (0.696 0.051 0.322);
+						axis (-0.99955986 0 0.029666244);
+                        omega 209.4614;
+                        amplitude 3.83;
+                        phase 5.421592;
+			            alpha0 12;
+                    }
+                }
+            }
+        }
+    }
+
+    bladezone270
+    {
+        cellZone bladezone270;
+        solver solidBody;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction multiMotion;
+            multiMotionCoeffs
+            {
+                rotorzone
+                {
+                    $rotation;
+                }
+
+                bladezone270
+                {
+                    solidBodyMotionFunction cyclicPitchMotion;
+                    cyclicPitchMotionCoeffs
+                    {
+                        origin (0.696 0.051 0.322);
+						axis (0 -0.99955986 0.029666244);
+                        omega 209.4614;
+                        amplitude 3.83;
+                        phase 6.992389; 
+			            alpha0 12;
+                    }
+                }
+            }
+        }
+    }
+}
+// ************************************************************************* //

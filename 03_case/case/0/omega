@@ -1,0 +1,47 @@
+FoamFile
+{
+ version 2.0;
+ format ascii;
+ class volScalarField;
+ location 0;
+ object omega;
+}
+
+dimensions [0 0 -1 0 0 0 0];
+internalField   uniform 5.4e5;  // = sqrt(k)/(C_mu^0.25 L), where C_mu = 0.09 and L = 1.0e-5
+
+boundaryField
+{
+  far_surface
+  {
+        type            turbulentMixingLengthFrequencyInlet; // Uses zeroGradient for outflow 
+        mixingLength    1.0e-5;
+        value           $internalField;
+  }
+  robin_surface
+  {
+    type        omegaWallFunction;
+    value       uniform 1e8;
+  }
+  blade000_surface
+  {
+    type        omegaWallFunction;
+    value       uniform 1e8;
+  }
+  blade090_surface
+  {
+    type        omegaWallFunction;
+    value       uniform 1e8;
+  }
+  blade180_surface
+  {
+    type        omegaWallFunction;
+    value       uniform 1e8;
+  }
+  blade270_surface
+  {
+    type        omegaWallFunction;
+    value       uniform 1e8;
+  }
+  #include        "include/cyclicAMI"
+}

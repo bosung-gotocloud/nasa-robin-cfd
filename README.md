@@ -178,7 +178,7 @@ To reproduce the visualization:
 ## Citation
 If you use this dataset, please cite:
 
-**Lee, B**. (2026). NASA ROBIN Rotor CFD Case (HiSA / OpenFOAM) (Version v1.0) [Data set]. enodo. https://doi.org/10.5281/zenodo.18955571
+**Lee, B**. (2026). NASA ROBIN Rotor CFD Case (HiSA / OpenFOAM) (Version v1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.18955571
 
 ## Experimental reference
 
